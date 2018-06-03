@@ -26,17 +26,22 @@
       preview.src = '';
     }
   }
-
-  function push() {
-    var preview = document.getElementById('img');
-    var image = document.getElementById('card-img-top').innerHTML = previewFile;
-    reader.onloadend = function () {
-      preview.src = reader.result;
-    }
-  }
-    
   
-
+/* HERE I'M TRY CHANGE PHOTO
+  function push() {
+    var preview = document.guerySelector('img');
+    var file =  document.querySelector('box');
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    preview.src = reader.result;
+  }
+ **/ 
+ function push(){
+  var change = document.getElementById('change').value;
+  var text = document.getElementById('p').innerHTML = change;
+  var y = new Date();
+  document.getElementById('date').innerHTML = y.getFullYear();
+ }
 </script>
 
 <body>
@@ -45,7 +50,7 @@
     <div class="dropdown" style='margin-top:85px;'>
       <button class="btn btn-secondary dropdown-toggle bg-info" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
         aria-expanded="false">
-        Fotoğraf Yükle
+        Upload Photo
       </button>
       <div class="dropdown-menu text-danger" aria-labelledby="dropdownMenu2">
         <div>
@@ -53,19 +58,21 @@
           <br>
           <img src='' height="200">
         </div>
+        <input id='change' type='text'> <!-- Fotoğrafa Açıklama Satırı -->
         <button onclick='push()' type="button" class="upload btn btn-success">Upload</button>
       </div>
     </div>
   </center>
   <div style='font-family: Amatic SC, cursive; margin-left:25px; margin-top:30px;'>
-    <h1>Fotoğrafların :</h1>
+    <h1>Your Photos :</h1>
   </div>
   <div id='box'>
       <div class="card" style="width: 18rem; height:18rem;">
           <img class="card-img-top" src='' alt="Card image cap">
           <div class="card-body">
-            <p class="card-text">Şimdi Bu Title'ı İstediğin Gibi Değiştiriceksin</p>
+            <p id='p' class="card-text">You Can Change This Text Like a Instagram!</p> 
           </div>
+          <p style='margin-left:210px; color:darkgrey;' id='date'>Post Date:</p>
         </div>
   </div>
   <!– Scripts Are Destroy My Mind :P ->
