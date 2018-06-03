@@ -1,0 +1,79 @@
+<html style="background-color:#36393E;">
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+    crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+  <link rel="stylesheet" href="css/animate.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>InstaApp</title>
+</head>
+<script>
+
+  function previewFile() {
+    var preview = document.querySelector('img');
+    var file = document.querySelector('input[type=file]').files[0];
+    var reader = new FileReader();
+
+    reader.onloadend = function () {
+      preview.src = reader.result;
+    }
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      preview.src = '';
+    }
+  }
+
+  function push() {
+    var preview = document.getElementById('img');
+    var image = document.getElementById('card-img-top').innerHTML = previewFile;
+    reader.onloadend = function () {
+      preview.src = reader.result;
+    }
+  }
+    
+  
+
+</script>
+
+<body>
+  <!- Drop Down ->
+  <center>
+    <div class="dropdown" style='margin-top:85px;'>
+      <button class="btn btn-secondary dropdown-toggle bg-info" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        Fotoğraf Yükle
+      </button>
+      <div class="dropdown-menu text-danger" aria-labelledby="dropdownMenu2">
+        <div>
+          <input type='file' onchange="previewFile()">
+          <br>
+          <img src='' height="200">
+        </div>
+        <button onclick='push()' type="button" class="upload btn btn-success">Upload</button>
+      </div>
+    </div>
+  </center>
+  <div style='font-family: Amatic SC, cursive; margin-left:25px; margin-top:30px;'>
+    <h1>Fotoğrafların :</h1>
+  </div>
+  <div id='box'>
+      <div class="card" style="width: 18rem; height:18rem;">
+          <img class="card-img-top" src='' alt="Card image cap">
+          <div class="card-body">
+            <p class="card-text">Şimdi Bu Title'ı İstediğin Gibi Değiştiriceksin</p>
+          </div>
+        </div>
+  </div>
+  <!– Scripts Are Destroy My Mind :P ->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+    crossorigin="anonymous"></script>
+</body>
+</html>
