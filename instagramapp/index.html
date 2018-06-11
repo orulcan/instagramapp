@@ -1,22 +1,23 @@
 <html style="background-color:#36393E;">
 
 <head>
+  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
     crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
   <link rel="stylesheet" href="css/animate.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
-  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
   <script>
     // Initialize Firebase
     var config = {
-      apiKey: "AIzaSyAL9ihJ3Ad9a7oFeY7tx2gkJlZSNBPVNAU",
-      authDomain: "upload-4cbbf.firebaseapp.com",
-      databaseURL: "https://upload-4cbbf.firebaseio.com",
-      projectId: "upload-4cbbf",
-      storageBucket: "upload-4cbbf.appspot.com",
-      messagingSenderId: "490151063997"
+      apiKey: "",
+      authDomain: "",
+      databaseURL: "",
+      projectId: "",
+      storageBucket: "",
+      messagingSenderId: ""
     };
     firebase.initializeApp(config);
   </script>
@@ -42,24 +43,28 @@
 
 
   function uploadPhoto() {
-    // Create a root reference
-    var storageRef = firebase.storage().ref('/images/');
-    // Create a reference to 'mountains.jpg'
-    var mountainsRef = storageRef.child('mountains.jpg');
-    // Create a reference to 'images/mountains.jpg'
-    var mountainImagesRef = storageRef.child('images/mountains.jpg');
-    // While the file names are the same, the references point to different files
-    mountainsRef.name === mountainImagesRef.name            // true
-    mountainsRef.fullPath === mountainImagesRef.fullPath    // false
-    console.log(mountainsRef);
+    //UPLOAD IMAGE
+    var selectedFile = document.querySelector('input[type=file]').files[0];
+    var filename = selectedFile.name;
+    var storageRef = firebase.storage().ref('/images/' + filename);
+    var uploadTask = storageRef.put(selectedFile);
+    uploadTask.on('state_changed', function (snapshot) {
+    }, function (error) {
+
+    }, function () {
+      var downloadURL = uploadTask.snapshot.downloadURL;
+      console.log('Success: ' + downloadURL);
     }
+    )
+    var test = selectedFile;
+    document.querySelector('img').src = test;
     //CHANGE TEXT
-    function push() {
-      var change = document.getElementById('change').value;
-      var text = document.getElementById('p').innerHTML = change;
-      var y = new Date();
-      document.getElementById('date').innerHTML = y.getFullYear();
-    }
+    var change = document.getElementById('change').value;
+    var text = document.getElementById('p').innerHTML = change;
+    var y = new Date();
+    document.getElementById('date').innerHTML = y.getFullYear();
+  }
+
 </script>
 
 <body>
@@ -90,7 +95,9 @@
   <center>
     <div id='box'>
       <div class="card" style="width: 18rem; height:18rem;">
-        <img class="card-img-top" src='' alt="Card image cap">
+        <div id='photo'>
+          <img class="card-img-top" src='' alt="Card image cap">
+        </div>
         <div class="card-body">
           <p id='p' class="card-text">You Can Change This Text Like a Instagram!</p>
         </div>
@@ -105,18 +112,7 @@
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
     crossorigin="anonymous"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-messaging.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-functions.js"></script>
-  <script>
-      var config = {
-        // ...
-      };
-      firebase.initializeApp(config);
-  </script>
+
 </body>
 
 </html>
